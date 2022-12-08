@@ -14,8 +14,7 @@ class Kernel extends ConsoleKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-        \App\Http\Middleware\Cors::class,//cors added here
-        'cors' => \Barryvdh\Cors\HandleCors::class, 
+        
          ];
     /**
      * Define the application's command schedule.

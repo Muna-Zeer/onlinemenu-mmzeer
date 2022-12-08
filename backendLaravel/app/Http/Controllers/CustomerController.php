@@ -22,7 +22,7 @@ class CustomerController extends Controller
    public function getCustomers(){
     $posts = DB::select('SELECT * FROM customers');
  
-     dd($posts);
+   
   }
   
 
@@ -92,9 +92,15 @@ public function customers(){
     //    customers.firstName,customers.lastName,customers.phone
     //    FROM addresses, customers 
     //    WHERE  customers.id = addresses.id  ` );
-    $result=Customer::select('customers.*')
-    ->leftJoin('addresses', 'customers.id', '=', 'addresses.customerID')
-    ->whereNull('addresses.customerID')->first();
+
+
+
+    // $result=Customer::select('customers.*')
+    // ->leftJoin('addresses', 'customers.id', '=', 'addresses.customerID')
+    // ->whereNull('addresses.customerID')->first();
+
+
+
         // if($query->num_rows() > 0 ) {
         //     return true;
         //     dd($query );
@@ -104,8 +110,9 @@ public function customers(){
         // }
         
         // $query = DB::table('customers')->get();
- 
-        dd($result );
+ $result=response()->json(Customer::latest()->get());
+ return $result;
+
    
         
     }

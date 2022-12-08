@@ -19,6 +19,14 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 */
 // Route::get('/customer',[CustomerController::class,'allCustomers']);
 Route::get('/getAddAddress',[CustomerController::class,'getAddressByCustomer']);
-Route::get('customers', 'App\Http\Controllers\CustomerController@index');
-Route::get('/customers/store/address', [CustomerController::class,'store_Address']);
+Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
+Route::get('/customers/store/address', [CustomerController::class,'store_Customer']);
 Route::get('/allCustomers',[CustomerController::class,'customers']);
+Route::get('/demo-url',  function  (Request $request)  {
+    return response()->json(['Laravel CORS Demo']);
+ });
+ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->customer();
+});
+
+Route::resource('customers',CustomerController::class);
