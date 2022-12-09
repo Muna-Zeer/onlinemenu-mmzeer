@@ -25,3 +25,7 @@ Route::get('/customers/store/address', [CustomerController::class,'store_Address
 Route::get('/customers/store/customer', [CustomerController::class,'store_Customer']);
 Route::get('customers', 'App\Http\Controllers\CustomerController@index');
 Route::get('/addresses',[CustomerController::class,'getCustomers']);
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

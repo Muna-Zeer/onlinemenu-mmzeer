@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('order_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('itemID');
+            $table->integer('itemID')->unsigned()->index()->nullable();
             $table->integer('customerID')->unsigned()->index()->nullable();
             $table->time('orderTime');
             $table->integer('employeeNo')->unsigned()->index()->nullable();
             $table->foreign('customerID')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('employeeNo')->references('id')->on('employees')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('itemID')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
+
             // $table->foreign(['employeeNo','customerID'])->references(['id','id'])
             // ->on(['employees','customers'])->onDelete(['cascade','cascade']);
             $table->timestamps();
