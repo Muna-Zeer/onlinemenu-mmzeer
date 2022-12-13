@@ -3,17 +3,18 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import NavigationHeader  from './components/navbar/navbar.components';
+import NavigationHeader from './components/navbar/navbar.components';
 import Blog from './components/pages/blog.components'
 import Price from './components/pages/price.components';
 import Menu from './components/pages/menu.components';
-import Reservation from './components/pages/reservation.components';
 import Home from './components/pages/home.components';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import {Link } from 'react-router-dom'
+import Header from './components/Header/header.component'
+import Reservation from './components/reservation/reservation.components';
 function App() {
+
   // const [customers, setCustomer] = useState([]);
 
 
@@ -27,7 +28,7 @@ function App() {
   //     .then((response) => {
   //       console.log('response of json ', response.text());
   //       return response.text()
-       
+
   //     })
   //     .then((data) => {
   //       console.log('return customer ', setCustomer(data));
@@ -40,8 +41,8 @@ function App() {
   //   fetchData();
   // }, [])
   const [customers, setCustomers] = useState([])
-  useEffect(()=>{
-    async function getAllStudent(){
+  useEffect(() => {
+    async function getAllStudent() {
       try {
         const customers = await axios.get("http://127.0.0.1:8000/api/customers")
         console.log(customers.data)
@@ -54,9 +55,9 @@ function App() {
   }, [])
   return (
     <div className="App">
-      
-       
-   <h1>Welcome in react</h1>
+
+      <Header />
+      <Reservation />
       {/* {
         customers.map((customer, i) => {
           return (
@@ -64,13 +65,13 @@ function App() {
           )
         })
       } */}
-  {
-       customers.map((customers, i)=>{
-         return (
-           <h2 key={i}>{customers.firstName} {customers.lastName}</h2>
-         )
-       })
-     }
+      {
+        customers.map((customers, i) => {
+          return (
+            <h2 key={i}>{customers.firstName} {customers.lastName}</h2>
+          )
+        })
+      }
     </div>
   );
 }

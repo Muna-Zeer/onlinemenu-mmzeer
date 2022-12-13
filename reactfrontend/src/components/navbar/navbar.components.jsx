@@ -1,41 +1,34 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Handbag, PhoneCall } from 'phosphor-react';
+import './navbar.component.css'
 const NavigationHeader = () => {
     return (
-        <div>
-            <li>
-            <Link to="/">Home</Link>
-            </li>
-            <li>
-            <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-            <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-            <Link to="/restaurant">Restaurant </Link>
-            </li>
-            <li>
-            <Link to="/price">price</Link>
-            </li>
-            {/* <Navbar collapseOnselect fixed='top' expand='sm' bg='dark' variant='dark'>
-                <Container>
-                    <Navbar.Toggle aria-controls='responsive-navbar-nav'/>
-                    <Navbar.Collapse id='responsive-navbar-nav'>
-                        <Nav>
-                            <Nav.Link href='/'>Home</Nav.Link>
-                            <Nav.Link href='/menu'>Menu</Nav.Link>
-                            <Nav.Link href='/blog'>Blog</Nav.Link>
-                            <Nav.Link href='/restaurant'>Restaurant</Nav.Link>
-                            <Nav.Link href='/price'>Price</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
+        <div className='NavigationHeader'>
 
-                  
-                </Container>
-            </Navbar> */}
+            <span className="logo">
+                <i> Pizz</i>
+                <i style={{ color: 'white' }}>on</i>
+            </span>
+            <nav className='nav'>
+                <li className='Home'>
+                    Home
+                </li>
+                <li className='Menu'>
+                    Menu
+                </li>
+                <li className='Pages'>
+                    Pages
+                </li>
+                <li className='Reservation'>
+                    Reservation
+                </li>
+                <li className='PhoneCall'><PhoneCall size={32}  color={'#f6831b'}/> +91 123 456 789</li>
+                <li className='PhoneCall'><Handbag size={32} color={'#f6831b'}/>0 items - $0.00</li>
+                <li><button>ORDER ONLINE</button></li>
+            </nav>
         </div>
     );
 }
-export default NavigationHeader ;
+export default NavigationHeader;
