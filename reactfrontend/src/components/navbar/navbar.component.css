@@ -1,0 +1,44 @@
+.NavigationHeader {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+
+.logo {
+    display: flex;
+    font-size: 60px;
+    color: #f6831b;
+    font-family: Cursive;
+
+}
+
+.nav {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 20px;
+    padding-top: 30px;
+
+
+}
+
+.nav li:hover {
+    color: #f6831b
+}
+
+li button {
+    margin-top: -10px;
+    height: 50px;
+    border-radius: 40px;
+background-color: #91b842;
+color: white;
+
+
+}
