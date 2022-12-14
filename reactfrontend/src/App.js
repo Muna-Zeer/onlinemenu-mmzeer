@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import NavigationHeader from './components/navbar/navbar.components';
 import Blog from './components/pages/blog.components'
 import Price from './components/pages/price.components';
-import Menu from './components/pages/menu.components';
+import Menu from './components/Menu/Menu.component';
 import Home from './components/pages/home.components';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
@@ -57,7 +57,9 @@ function App() {
     <div className="App">
 
       <Header />
-      <Reservation />
+      {/* <Reservation /> */}
+      <Menu/>
+
       {/* {
         customers.map((customer, i) => {
           return (
