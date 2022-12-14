@@ -17,7 +17,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('ItemName');
             $table->string('size');
-            $table->integer('price');
+            $table->integer('newPrice');
+            $table->integer('oldPrice');
+            $table->integer('Qty');
             $table->binary('ItemImg');
             $table->string('Description');
             $table->integer('menuID')->unsigned()->index()->nullable();

@@ -7,12 +7,14 @@ import NavigationHeader  from './components/navbar/navbar.components';
 import Blog from './components/pages/blog.components'
 import Price from './components/pages/price.components';
 import Menu from './components/pages/menu.components';
-import Reservation from './components/pages/reservation.components';
+import Reservation from './components/reservation/reservation.components';
 import Home from './components/pages/home.components';
+import NotFound from './components/NotFound/notfound.component'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import {Link } from 'react-router-dom'
+import {Link } from 'react-router-dom';
+
 function App() {
   // const [customers, setCustomer] = useState([]);
 
@@ -54,22 +56,17 @@ function App() {
   }, [])
   return (
     <div className="App">
-      
-       
-   <h1>Welcome in react</h1>
-      {/* {
-        customers.map((customer, i) => {
-          return (
-            <h2 key={i}>{customer.firstName} {customer.lastName}</h2>
-          )
-        })
-      } */}
   {
-       customers.map((customers, i)=>{
+
+       customers.length ===0 ? <NotFound />  :
+        customers?.map((customers, i)=>{
          return (
            <h2 key={i}>{customers.firstName} {customers.lastName}</h2>
          )
        })
+     }
+     {
+      <Reservation/>
      }
     </div>
   );

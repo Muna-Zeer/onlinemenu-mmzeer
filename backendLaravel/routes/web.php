@@ -29,3 +29,4 @@ Route::get('/addresses',[CustomerController::class,'getCustomers']);
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+Route::view('/{path?}', 'app');
