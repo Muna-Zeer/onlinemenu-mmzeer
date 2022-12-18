@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import Header from './components/Header/header.component'
 import Reservation from './components/reservation/reservation.components';
+import OrderOnline from './components/OrderOnline/orderonline.component';
 function App() {
 
   // const [customers, setCustomer] = useState([]);
@@ -56,9 +57,10 @@ function App() {
   return (
     <div className="App">
 
-      <Header />
+      {/* <Header />
       {/* <Reservation /> */}
-      <Menu/>
+      {/* <Menu/> */} */
+      <OrderOnline/>
 
       {/* {
         customers.map((customer, i) => {
