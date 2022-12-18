@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import NotFound from '../NotFound/notfound.component';
 import pizza from '../../assets/image/pizzaitem2.jpg'
-import { Handbag} from 'phosphor-react';
+import { Handbag } from 'phosphor-react';
 
 function AddOrder() {
 
@@ -42,7 +42,7 @@ function AddOrder() {
 
 
 
-    const [studentInput, setStudent] = useState({
+    const [orderInput, setOrder] = useState({
         name: '',
         size: '',
         crust: '',
@@ -55,7 +55,7 @@ function AddOrder() {
 
     const handleInput = (e) => {
         e.persist();
-        setStudent({ ...studentInput, [e.target.name]: e.target.value })
+        setOrder({ ...orderInput, [e.target.name]: e.target.value })
     }
 
 
@@ -63,11 +63,11 @@ function AddOrder() {
         e.preventDefault();
 
         const data = {
-            name: studentInput.name,
+            name: orderInput.name,
 
-            Qty: studentInput.Qty,
-            size: studentInput.size,
-            crust: studentInput.crust,
+            Qty: orderInput.Qty,
+            size: orderInput.size,
+            crust: orderInput.crust,
 
 
         }
@@ -76,7 +76,7 @@ function AddOrder() {
 
             if (res.data.status === 200) {
                 swal("Success!", res.data.message, "success");
-                setStudent({
+                setOrder({
                     name: '',
                     size: '',
                     crust: '',
@@ -89,7 +89,7 @@ function AddOrder() {
                 <NotFound />
             }
             else if (res.data.status === 422) {
-                setStudent({ ...studentInput, error_list: res.data.validate_err });
+                setOrder({ ...orderInput, error_list: res.data.validate_err });
             }
         });
     }
@@ -117,21 +117,21 @@ function AddOrder() {
                                 <li>
                                     <label>
                                         <input type="radio" value="Classic Hand Tossed" name='crust'
-                                            checked={studentInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
+                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
                                         <span>Classic Hand Tossed</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label>
                                         <input type="radio" value="Wheat Thin Crust" name='crust'
-                                            checked={studentInput.crust === "Wheat Thin Crust"} onChange={handleInput} />
+                                            checked={orderInput.crust === "Wheat Thin Crust"} onChange={handleInput} />
                                         <span>Wheat Thin Crust</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label>
                                         <input type="radio" value="Classic Hand Tossed" name='crust'
-                                            checked={studentInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
+                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
                                         <span>Classic Hand Tossed</span>
                                     </label>
                                 </li>
@@ -142,21 +142,21 @@ function AddOrder() {
                             <ul className='text-muted'>
                                 <li>
                                     <label>
-                                        <input type="radio" value="small" name='size' checked={studentInput.size === "small"}
+                                        <input type="radio" value="small" name='size' checked={orderInput.size === "small"}
                                             onChange={handleInput} />
                                         <span>small</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label>
-                                        <input type="radio" value="large" name='size' checked={studentInput.size === "large"}
+                                        <input type="radio" value="large" name='size' checked={orderInput.size === "large"}
                                             onChange={handleInput} />
                                         <span>large</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label>
-                                        <input type="radio" value="medium" name='size' checked={studentInput.size === "medium"}
+                                        <input type="radio" value="medium" name='size' checked={orderInput.size === "medium"}
                                             onChange={handleInput} />
                                         <span>medium</span>
                                     </label>
@@ -167,8 +167,8 @@ function AddOrder() {
 
                             <div className="form-group mb-3">
                                 <label>Qty</label>
-                                <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={studentInput.Qty} className="Qty" />
-                                <button type="submit" className="btn "> <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'}/>ADD TO CART</button>
+                                <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={orderInput.Qty} className="Qty" />
+                                <button type="submit" className="btn "> <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART</button>
                             </div>
                         </form>
 
