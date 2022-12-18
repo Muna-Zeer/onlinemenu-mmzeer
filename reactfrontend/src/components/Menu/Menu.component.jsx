@@ -12,7 +12,24 @@ const Menu = () => {
                 <div>DESERTS</div>
                 <div>PIZZAS</div>
             </nav>
-            <div className="list">
+            <div class="col-xl-9 col-lg-9 col-md-9">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4">
+                        <div class="menu-grid">
+                            <a href="shop-detail.html" class="menu-grid-center">
+                                <div class="pizza-menu">
+                                    <img src="images/2-1.png" alt="pizza" />
+                                </div>
+                                <div class="pizza-det">
+                                    <p class="Pizza-name-1">Ham & Cheese</p>
+                                    <span class="pizza-price-1">$12.99</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="list">
                 <div className="image" style={{ backgroundImage: `url(${pizza})` }}></div>
                 <div className="item">
 
@@ -60,7 +77,7 @@ const Menu = () => {
                 
                 </div>
                 </div>
-            </div>
-        </div>);
+            </div> */}
+        </div >);
 }
 export default Menu;
