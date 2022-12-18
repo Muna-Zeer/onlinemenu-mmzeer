@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import NotFound from '../NotFound/notfound.component';
 import pizza from '../../assets/image/pizzaitem2.jpg'
 import { Handbag } from 'phosphor-react';
-
+import 'react-datepicker/dist/react-datepicker.css';
 function AddOrder() {
 
     const [orders, setOrders] = useState([])
@@ -99,73 +99,69 @@ function AddOrder() {
             <div className="container ">
                 <div className="row justify-content-center mt-5 ">
                     <div className="col-sm-4 "> <img src={pizza} alt="" height={400} /></div>
-                    <div className="col-sm-8 text-start ps-5  ">
-
-
-                        <h3 >PANEER MAKHANI PIZZA
-
-                        </h3>
+                    <div className="col-sm-8 text-start ps-5">
+                        <h3 >PANEER MAKHANI PIZZA </h3>
                         <span className='pe-5 text-muted '><del>$ 30.50 </del></span><span className='text-warning'>$ 20.50</span>
                         <p className=' text-muted '>Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
                             suscipit delectus. Corrupti, suscipit! Nobis deleniti placeat suscipit provident, dolore aut esse
                             libero totam, consequuntur ratione enim ducimus. Nemo, asperiores porro!</p>
 
 
-                        <form onSubmit={saveStudent}>
-                            <h5 >CHOOSE YOUR CRUST</h5>
-                            <ul className='text-muted'>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="Classic Hand Tossed" name='crust'
-                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
-                                        <span>Classic Hand Tossed</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="Wheat Thin Crust" name='crust'
-                                            checked={orderInput.crust === "Wheat Thin Crust"} onChange={handleInput} />
-                                        <span>Wheat Thin Crust</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="Classic Hand Tossed" name='crust'
-                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
-                                        <span>Classic Hand Tossed</span>
-                                    </label>
-                                </li>
+                        <form col-sm-8 text-start onSubmit={saveStudent}>
+                            <div className='text-start'>
 
-                            </ul>
+                                <h5 >CHOOSE YOUR CRUST</h5>
+                                <ul className='text-muted'>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="Classic Hand Tossed" name='crust'
+                                                checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
+                                            <span>Classic Hand Tossed</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="Wheat Thin Crust" name='crust'
+                                                checked={orderInput.crust === "Wheat Thin Crust"} onChange={handleInput} />
+                                            <span>Wheat Thin Crust</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="Classic Hand Tossed" name='crust'
+                                                checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
+                                            <span>Classic Hand Tossed</span>
+                                        </label>
+                                    </li>
 
-                            <h6 >SIZE OF CRUST</h6>
-                            <ul className='text-muted'>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="small" name='size' checked={orderInput.size === "small"}
-                                            onChange={handleInput} />
-                                        <span>small</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="large" name='size' checked={orderInput.size === "large"}
-                                            onChange={handleInput} />
-                                        <span>large</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="radio" value="medium" name='size' checked={orderInput.size === "medium"}
-                                            onChange={handleInput} />
-                                        <span>medium</span>
-                                    </label>
-                                </li>
+                                </ul>
+                                <h6 >SIZE OF CRUST</h6>
+                                <ul className='text-muted'>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="small" name='size' checked={orderInput.size === "small"}
+                                                onChange={handleInput} />
+                                            <span>small</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="large" name='size' checked={orderInput.size === "large"}
+                                                onChange={handleInput} />
+                                            <span>large</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" value="medium" name='size' checked={orderInput.size === "medium"}
+                                                onChange={handleInput} />
+                                            <span>medium</span>
+                                        </label>
+                                    </li>
 
-                            </ul>
-
-
-                            <div className="form-group mb-3">
+                                </ul>
+                            </div>
+                            <div className="form-Qty ">
                                 <label>Qty</label>
                                 <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={orderInput.Qty} className="Qty" />
                                 <button type="submit" className="btn "> <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART</button>

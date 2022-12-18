@@ -2,29 +2,17 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Home from './components/pages/home.components'
 
 import Menu from './components/Menu/Menu.component';
-
+import Reservation from './components/reservation/reservation.components';
 import { useState, useEffect } from 'react';
+
 import axios from "axios";
 import Header from './components/Header/header.component';
 import AddOrder from './components/addOrder/addOrder.components';
 function App() {
-  // const [customers, setCustomer] = useState([]);
-
-
-  // /*, {
-  //           method: "GET", mode: 'no-cors', headers: {
-  //             'Accept': 'application/json',
-  //             'Content-Type': 'application/json',
-  //           }} */
-
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, [])
+ 
   const [customers, setCustomers] = useState([])
   const [orders, setOrders] = useState([])
   useEffect(()=>{
@@ -53,9 +41,8 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <Header/>
-      {/* <Menu/> */}
-      <AddOrder/>
+    
+    
   {
 
        customers.length ===0 ? " "  :
@@ -75,21 +62,16 @@ function App() {
        )
      })
      }
-     {/* {
-      <Reservation/>
-
-      
-     }
-     {
-      <AddOrder/>
-   
-     } */}
-     {
-      //  <ViewStudent/>
-     }
-     {/* {
-        <Item/> 
-     } */}
+     <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/OrderOnline" element={<AddOrder />} />
+            <Route path="/Menu" element={<Menu />} />
+            <Route path="/Reservation" element={<Reservation  />} />
+         
+          </Routes>
+        </BrowserRouter>
     </div>
   );
 }
