@@ -5,8 +5,9 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import NotFound from '../NotFound/notfound.component';
 import pizza from '../../assets/image/pizzaitem2.jpg'
-import { Handbag } from 'phosphor-react';
+import { Handbag, EnvelopeSimple, HeartStraight, CellSignalFull, FacebookLogo, TwitterLogo, LinkedinLogo, InstagramLogo } from 'phosphor-react';
 import 'react-datepicker/dist/react-datepicker.css';
+
 function AddOrder() {
 
     const [orders, setOrders] = useState([])
@@ -164,10 +165,46 @@ function AddOrder() {
                             <div className="form-Qty ">
                                 <label>Qty</label>
                                 <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={orderInput.Qty} className="Qty" />
-                                <button type="submit" className="btn "> <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART</button>
+                                <button type="submit" className="btn ">
+                                    <Link className="nav-link" to="/AddOrder">
+                                        <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART
+                                    </Link>
+                                </button>
+
                             </div>
                         </form>
+                        <hr />
+                        <div className='share'>
+                            <ul >
+                                <li>
 
+                                    <a href="#">
+
+                                        <span> <HeartStraight size={32} color="#080808" />Wishlist</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="#">
+
+                                        <span><CellSignalFull size={32} color="#080808" />Compare</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="#">
+
+                                        <span><EnvelopeSimple size={32} color="#080808" />Email to Friends</span>
+                                    </a>
+                                </li>
+                            
+                                <li class="share-title ms-5" >Share This :</li>
+                                <li><a href="#"><i class="facebook" > <FacebookLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="#"><i class="twitter" > <TwitterLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="#"><i class="linkedin" ><LinkedinLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="#"><i class="instagram" > <InstagramLogo size={32} color="#080808" /></i></a></li>
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
