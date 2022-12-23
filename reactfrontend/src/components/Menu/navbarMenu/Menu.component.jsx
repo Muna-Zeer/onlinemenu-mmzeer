@@ -7,13 +7,13 @@ const NavbarMenu = () => {
     return (
         <div className="Menu">
             <nav className='navMenu'>
-                <div>ALL</div>
-                <div>DRINKS</div>
-                <div>SALADS</div>
-                <div>PASTA</div>
-                <div>BURGERS</div>
-                <div>DESERTS</div>
-                <div>PIZZAS</div>
+                <div><Link to="/">ALL</Link></div>
+                <div><Link to="/">DRINKS</Link></div>
+                <div><Link to="/">SALADS</Link></div>
+                <div><Link to="/">PASTA</Link></div>
+                <div><Link to="/">BURGERS</Link></div>
+                <div><Link to="/">DESERTS</Link></div>
+                <div><Link to="/">PIZZAS</Link></div>
             </nav>
             
                    

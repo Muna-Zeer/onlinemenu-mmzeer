@@ -3,39 +3,44 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-     
+
 }
 
 .menuBox {
     width: 350px;
     height: 450px;
-    
+
     margin: 10px;
-   position: relative;
+    position: relative;
 }
 
-.menu-detail li{
+.menu-detail li {
     display: inline-block;
     transform: none;
     padding: 5px;
 }
-.menuBox img:hover{
-   position:relative;
-   bottom: 10px;
+
+.menuBox img:hover {
+    position: relative;
+    bottom: 10px;
 }
-#title{
-text-transform: uppercase;
-font-weight: bold;
-padding-top: 6px;
+
+#title {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 6px;
 }
-#title:hover{
+
+#title:hover {
     color: #fd9d3e;
 }
-.orderNow{
-    color: #fd9d3e;   
-  
+
+.orderNow {
+    color: #fd9d3e;
+
 }
-.orderNow:hover{
-    color: #000;   
-  
+
+.orderNow:hover {
+    color: #000;
+
 }

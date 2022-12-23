@@ -14,35 +14,35 @@ import AddOrder from './components/addOrder/addOrder.components';
 import Footer from './components/footer/footer.components';
 import MenuList from './components/Menu/listMenu/listMenu';
 import MenuGrid from './components/Menu/gridMenu/gridMenu';
-import OrderOnline from './components/OrderOnline/orderonline.component';
+import OrderOnline from './components/OrderOnline/orderOnline.component';
 function App() {
 
   const [customers, setCustomers] = useState([])
   const [orders, setOrders] = useState([])
-  // useEffect(() => {
-  //   async function getAllStudent() {
-  //     try {
-  //       const customers = await axios.get("http://127.0.0.1:8000/api/customers")
-  //       console.log(customers.data)
-  //       setCustomers(customers.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getAllStudent()
-  // }, [])
-  // useEffect(() => {
-  //   async function getAllImages() {
-  //     try {
-  //       const orders = await axios.get("http://127.0.0.1:8000/api/selectImg")
-  //       console.log(orders.data)
-  //       setOrders(orders.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getAllImages()
-  // }, [])
+  useEffect(() => {
+    async function getAllStudent() {
+      try {
+        const customers = await axios.get("http://127.0.0.1:8000/api/customers")
+        console.log(customers.data)
+        setCustomers(customers.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getAllStudent()
+  }, [])
+  useEffect(() => {
+    async function getAllImages() {
+      try {
+        const orders = await axios.get("http://127.0.0.1:8000/api/selectImg")
+        console.log(orders.data)
+        setOrders(orders.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getAllImages()
+  }, [])
   return (
     <div className="App">
 

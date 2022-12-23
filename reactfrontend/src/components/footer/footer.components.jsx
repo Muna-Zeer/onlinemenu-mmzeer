@@ -50,14 +50,14 @@ const Footer = () => {
                     </div>
                     <div className='social col-md-12 text-center'> <ul>
                         <hr />
-                        <li><a href="#"><i class="facebook" > <FacebookLogo size={32} color="#fff" /></i></a></li>
-                        <li><a href="#"><i class="twitter" > <TwitterLogo size={32} color="#fff" /></i></a></li>
-                        <li><a href="#"><i class="linkedin" ><LinkedinLogo size={32} color="#fff" /></i></a></li>
-                        <li><a href="#"><i class="instagram" > <InstagramLogo size={32} color="#fff" /></i></a></li>
+                        <li><a href="https://www.facebook.com/"><i class="facebook" > <FacebookLogo size={32} color="#fff" /></i></a></li>
+                        <li><a href="https://twitter.com/"><i class="twitter" > <TwitterLogo size={32} color="#fff" /></i></a></li>
+                        <li><a href="https://il.linkedin.com/"><i class="linkedin" ><LinkedinLogo size={32} color="#fff" /></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="instagram" > <InstagramLogo size={32} color="#fff" /></i></a></li>
                     </ul></div>
                 </div>
             </div>
-        
+
 
         </div>
     );
