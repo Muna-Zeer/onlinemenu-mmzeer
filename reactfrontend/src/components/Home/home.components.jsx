@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import pizza from '../../assets/image/pizzaitem2.jpg';
+import MenuGrid from '../Menu/gridMenu/gridMenu';
 import './home.css'
 const Home = () => {
     return (
@@ -32,6 +33,12 @@ const Home = () => {
 
                 </div>
             </div>
+            
+            <h3 className="headerTitle"> Fresh From Pizzon</h3>
+            <h1 className="header-tag">OUR SPECIAL MENU</h1>
+           
+
+            <MenuGrid/>
         </div>
     )
 }
