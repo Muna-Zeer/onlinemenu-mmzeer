@@ -1,0 +1,50 @@
+.menuListCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.menuListBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-direction: row;
+    width: 500px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+}
+
+.listImg img {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50px;
+    margin: 15px;
+}
+
+.menuListBox img:hover {
+    position: relative;
+    bottom: 10px;
+}
+
+.ListTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 6px;
+}
+
+.ListTitle :hover {
+    color: #fd9d3e;
+}
+
+.listPrice {
+    color: #fd9d3e;
+}

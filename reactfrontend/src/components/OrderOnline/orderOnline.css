@@ -1,0 +1,40 @@
+.OrderOnlineCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: #fd9d3e; */
+     
+}
+
+.OrderOnlineBox {
+    width: 250px;
+    height: 450px;
+    /* background-color: blue; */
+    margin: 10px;
+   position: relative;
+}
+
+.OrderOnline-detail li{
+    display: inline-block;
+    transform: none;
+    padding: 5px;
+}
+.OrderOnlineBox img:hover{
+   position:relative;
+   bottom: 10px;
+}
+#OrderOnline-title{
+text-transform: uppercase;
+font-weight: bold;
+padding-top: 6px;
+}
+#OrderOnline-title :hover{
+    /* color: #fd9d3e; */
+}
+.btn-orderNow{
+    width: 150px;
+    height: 40px;
+    border-radius: 30px;
+    /* background-color: blueviolet; */
+}

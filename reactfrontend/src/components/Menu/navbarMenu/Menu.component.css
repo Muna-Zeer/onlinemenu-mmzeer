@@ -1,0 +1,52 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap;
+
+}
+
+.list .image {
+  width: 300px;
+  height: 150px;
+  background-size: cover;
+  border-radius: 100px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+}
+
+.navMenu {
+  padding: 10px;
+  margin: 60px;
+  width: 75vw;
+  height: 8vh;
+  border-radius: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(226, 221, 221);
+
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+
+}
+
+.contain {
+  color: rgb(117, 113, 113);
+}
