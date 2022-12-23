@@ -169,7 +169,7 @@ function AddOrder() {
                                 <label>Qty</label>
                                 <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={orderInput.Qty} className="Qty" />
                                 <button type="submit" className="btn ">
-                                {/* <Link className="nav-link" to="/ViewOrder">  */}
+                                <Link className="nav-link" to="/ViewOrder"/> 
                                 <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART 
                                 {/* </Link> */}
                                 </button>
