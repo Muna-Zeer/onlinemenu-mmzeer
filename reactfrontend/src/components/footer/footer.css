@@ -6,7 +6,7 @@
     padding-top: 30px;
 }
 
-.footer li  {
+.footer li {
     display: block;
     transform: none;
     padding: 10px;
@@ -17,7 +17,8 @@
 
 
 .footer .useful-links li,
-.useful-links a  ,.phone-email a{
+.useful-links a,
+.phone-email a {
     display: block;
     transform: none;
     padding: 2px;

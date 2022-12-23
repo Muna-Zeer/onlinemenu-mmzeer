@@ -3,38 +3,110 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    /* background-color: #fd9d3e; */
-     
+
+
 }
 
 .OrderOnlineBox {
-    width: 250px;
-    height: 450px;
-    /* background-color: blue; */
+    width: 300px;
+    height: 350px;
+
     margin: 10px;
-   position: relative;
+    position: relative;
 }
 
-.OrderOnline-detail li{
+.OrderOnline-detail li {
     display: inline-block;
     transform: none;
     padding: 5px;
 }
-.OrderOnlineBox img:hover{
-   position:relative;
-   bottom: 10px;
+
+.OrderOnlineBox img:hover {
+    position: relative;
+    bottom: 10px;
 }
-#OrderOnline-title{
-text-transform: uppercase;
-font-weight: bold;
-padding-top: 6px;
+
+.OrderOnlineBox img {
+
+    border-radius: 150px;
+    background-size: cover;
 }
-#OrderOnline-title :hover{
-    /* color: #fd9d3e; */
+
+.OrderOnline-item {
+    font-size: 15px;
 }
-.btn-orderNow{
+
+.btn-orderNow {
     width: 150px;
     height: 40px;
     border-radius: 30px;
-    /* background-color: blueviolet; */
+    background-color: black;
+    color: #fff;
+}
+
+.btn-orderNow {
+    width: 160px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: black;
+    color: #fff;
+}
+
+.btn-orderNow:hover {
+    width: 160px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: white;
+    color: #000;
+}
+
+.OrderOnlineImage {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../assets/image/pizza.webp');
+    width: 100%;
+    height: 170px;
+    background-size: cover;
+    background-position: center;
+
+    background-repeat: no-repeat;
+    margin: 50px;
+    margin-left: 0px;
+    padding-top: 20px;
+}
+
+.OrderOnlineImage p {
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.OrderOnlineImage span {
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid rgb(59, 58, 59);
+    height: 70px;
+}
+
+.filter ul li {
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid rgb(59, 58, 59);
+    height: 60px;
+    display: inline-block;
+    transform: none;
+    padding: 30px;
+
+    margin-right: 10px;
+    border: 1px solid black;
+
+
+
+
 }

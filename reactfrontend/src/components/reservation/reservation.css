@@ -54,7 +54,8 @@
     padding: 20px;
 }
 
-.form-comments ,.form-submit{
+.form-comments,
+.form-submit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,7 +70,8 @@
 
 
 }
-.form-submit input{
+
+.form-submit input {
     border-radius: 40px;
     width: 50%;
     height: 60px;
@@ -80,8 +82,9 @@
     font-size: 30px;
 
 }
-.form-submit input:hover{
+
+.form-submit input:hover {
     background-color: white;
     color: #fd9d3e;
-    border:1px solid #fd9d3e;
+    border: 1px solid #fd9d3e;
 }

@@ -1,0 +1,46 @@
+.HomeBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-wrap: wrap;
+}
+
+.home-img img {
+    border-radius: 350px;
+}
+
+.home-img img:hover {
+    width: 310px;
+    border-radius: 150px;
+}
+
+.ViewMore {
+
+    width: 150px;
+    height: 45px;
+    background-color: #fd9d3e;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    border: #fd9d3e;
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
+.homeLink {
+    text-decoration: none;
+    color: white;
+}
+
+.homeLink:hover {
+    text-decoration: none;
+    color: rgb(11, 11, 11);
+}
+
+.ViewMore:hover {
+    background-color: white;
+    color: rgb(3, 3, 3);
+    border: #fd9d3e;
+
+}

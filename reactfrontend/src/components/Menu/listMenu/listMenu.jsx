@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const MenuList = () => {
     return (
         <div className="container">
-<NavbarMenu/>
+            <NavbarMenu />
             <div className="MenuList">
                 <div className=" menuListCard ">
                     <div className="menuListBox">

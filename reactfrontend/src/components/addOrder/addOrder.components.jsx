@@ -197,12 +197,12 @@ function AddOrder() {
                                         <span><EnvelopeSimple size={32} color="#080808" />Email to Friends</span>
                                     </a>
                                 </li>
-                            
+
                                 <li class="share-title ms-5" >Share This :</li>
-                                <li><a href="#"><i class="facebook" > <FacebookLogo size={32} color="#080808" /></i></a></li>
-                                <li><a href="#"><i class="twitter" > <TwitterLogo size={32} color="#080808" /></i></a></li>
-                                <li><a href="#"><i class="linkedin" ><LinkedinLogo size={32} color="#080808" /></i></a></li>
-                                <li><a href="#"><i class="instagram" > <InstagramLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://www.facebook.com/"><i class="facebook" > <FacebookLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://twitter.com/"><i class="twitter" > <TwitterLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://il.linkedin.com/"><i class="linkedin" ><LinkedinLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="instagram" > <InstagramLogo size={32} color="#080808" /></i></a></li>
                             </ul>
                         </div>
 
