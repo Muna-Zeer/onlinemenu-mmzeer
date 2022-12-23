@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\ItemController;
 use App\Models\Table;
 // header('Access-Control-Allow-Origin: *');
 // //Access-Control-Allow-Origin: *
@@ -22,7 +23,7 @@ use App\Models\Table;
 // Route::get('/customer',[CustomerController::class,'allCustomers']);
 Route::get('/getAddAddress',[CustomerController::class,'getAddressByCustomer']);
 Route::get('/customers', 'App\Http\Controllers\CustomerController@index');
-Route::post('/create_Table', 'App\Http\Controllers\TableController@login');
+Route::post('/create_Table', 'App\Http\Controllers\TableController@store');
 Route::get('/orders', 'App\Http\Controllers\TableController@index');
 Route::get('/order', 'App\Http\Controllers\TableController@index');
 Route::get('/customers/store/address', [CustomerController::class,'store_Customer']);
@@ -38,5 +39,19 @@ Route::post('orders', function(Request $request) {
      return $resp;
   
  });
-  
+ Route::get('/allOrder', 'App\Http\Controllers\ItemController@index');
+
+ Route::get('/edit-order/{id}', [ItemController::class, 'edit']);
+ Route::get('/select-items/{menuID}', [ItemController::class, 'selectMenuType']);
+ Route::put('update-order/{id}', [ItemController::class, 'update']);
+ Route::delete('delete-order/{id}', [ItemController::class, 'destroy']);
+
+ Route::post('/create_order', 'App\Http\Controllers\ItemController@store');
+
 Route::resource('customers',CustomerController::class);
+
+Route::resource('items',ItemController::class);
+Route::get('/selectItem', 'App\Http\Controllers\ItemController@selectItem');
+Route::get('/selectSize', 'App\Http\Controllers\ItemController@filterSize');
+Route::get('/filterCrust', 'App\Http\Controllers\ItemController@filterCrust');
+Route::get('/filterPrice', 'App\Http\Controllers\ItemController@filterPrice');

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('menu_types', function (Blueprint $table) {
             $table->increments('id');
            
-            $table->string('category-Type');
+            $table->string('categoryType');
 
             $table->timestamps();
         });

@@ -1,157 +1,147 @@
-import './reservation.css'
-import React from 'react';
-import { useNavigate,} from 'react-router-dom';
-import DatePicker from "react-datepicker";
-import { useState } from 'react';
- 
-import "react-datepicker/dist/react-datepicker.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import swal from 'sweetalert';
+import NotFound from '../NotFound/notfound.component';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import './reservation.css'
+import 'react-datepicker/dist/react-datepicker.css';
 const Reservation = () => {
     const Hour = [{ value: 'Hour', label: 'Hour' }
-    , { value: 'min', label: 'min' }, { value: 'second', label: 'second' }];
-const numPeople = [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }];
-// const history = useNavigate();
-const [name, setName] = useState("");
-const [phone, setPhone] = useState("");
-const [comments, setComments] = useState("");
-const [date, setDate] = useState(new Date());
-const [email, setEmail] = useState("");
-const [selectedHour, setSelectedHour] = useState(Hour[0]);
-const [selectedPeople, setSelectedPeople] = useState(numPeople[0]);
-const [errors, setErrors] = useState("");
-const[loading,setLoading]=useState(false);
-const [text, setText] = useState("");
-const todoOrder = {
-    name:name, phone:phone, comments:comments,
-    date:new Date(), email:email, selectedHour, selectedPeople};
-function handleSubmit(e) {
-  
- 
-   
-  
-    console.log('stat',todoOrder );
-    fetch('http://127.0.0.1:8000/api/create_Table', {
-        method: 'POST',
-      mode:'no-cors',
-        headers: {
-            "Content-Type": "application/json"
-           
-        },
-        body: JSON.stringify({'todoOrder':todoOrder})
-     
-    }).then( response => {
-        return response.json();
-        console.log('response',response.json());
-        console.log('todo after',todoOrder);
-    
-    }).then(res=>{
-        console.log('res',res);
-        if (!res.ok) {
-            const validation =  res.json();
-            setErrors(validation.errors);
-            console.log(validation.errors);
-        } else {
-            // history('/')
-        }
-    })
-}
-// const handleSubmit =async (e)=>{
+        , { value: 'min', label: 'min' }, { value: 'second', label: 'second' }];
+    const numPeople = [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }];
 
-//     if(name===''||phone===''||email===''||comments===''){
-//         setErrors(true);
-//         setText('fill all fields')
-//     }
-//     else{
-//         setErrors(false);
-// setLoading(true);
-// let  query=await axios.post('http://127.0.0.1:8000/api/create_Table',{
-//     name,
-//     email,
-//     phone,
-//     comments,
-//     Hour,numPeople
-// }).then().catch((error)=>console.log(error))
-// console.log('query',query);
-//     }
-// }
+    const [date, setDate] = useState(new Date());
+    const handleChange = date => setDate(date);
+
+    const [orderInput, setOrder] = useState({
+        name: '',
+        comments: '',
+        email: '',
+        phone: '',
+        Hour: '',
+        numPeople: '',
+        date: new Date(),
+        error_list: [],
+    });
+
+    const handleInput = (e) => {
+        e.persist();
+        setOrder({ ...orderInput, [e.target.name]: e.target.value })
+    }
+
+    const saveOrder = (e) => {
+        e.preventDefault();
+
+        const data = {
+            name: orderInput.name,
+            comments: orderInput.comments,
+            email: orderInput.email,
+            phone: orderInput.phone,
+            date: orderInput.date,
+            Hour: orderInput.Hour,
+            numPeople: orderInput.numPeople,
+        }
+
+        axios.post(`http://127.0.0.1:8000/api/create_Table`, data).then(res => {
+
+            if (res.data.status === 200) {
+                swal("Success!", res.data.message, "success");
+                setOrder({
+                    name: '',
+                    comments: '',
+                    email: '',
+                    phone: '',
+                    date: '',
+                    Hour: '',
+                    numPeople: '',
+                    error_list: [],
+                });
+                // history.push('/students');
+                <NotFound />
+            }
+            else if (res.data.status === 422) {
+                setOrder({ ...orderInput, error_list: res.data.validate_err });
+            }
+        });
+    }
     return (
         <div>
-
-            <h3 className="header">Make Online Reservation</h3>
+            <h3 className="headerTitle">Make Online Reservation</h3>
             <h1 className="header-tag">BOOK A TABLE</h1>
-          
 
-                <div className='formSelect'>
+            <form onSubmit={saveOrder}>
+                <div className='divSelect'>
 
-                    <select
-                    name='Hour'
-                        value={selectedHour}
-                        onChange={e => setSelectedHour(e.target.value)}>
-                        {Hour.map((value,index) => (
-                            <option value={value.value} key={index}>
-                                {value.label}
-                            </option>
-                        ))}
+
+                    <select className='options' name="Hour" placeholder="Hour" value={orderInput.Hour} onChange={handleInput}  >
+                        <option value="" >Hour</option>
+
+
+                        {
+                            Hour.map(item => (
+                                <option
+                                    value={item.value}
+                                    key={item.value}
+                                >{item.label}</option>
+                            ))
+                        }
+
+
                     </select>
 
-                </div>
-
-                <div className='formSelect'>
-                    <select
-                        value={selectedPeople} 
-                        name="numPeople"
-                        onChange={e => setSelectedPeople(e.target.value)}>
-                        {numPeople.map((num,index) => (
-                            <option value={num.value} key={index}>
-                                {num.label}
-                            </option>
-                        ))}
+                    <select className='options' name="numPeople" placeholder="1" value={orderInput.numPeople} onChange={handleInput}  >
+                        {
+                            numPeople.map(item => (
+                                <option value={item.value} key={item.value} >{item.label}</option>))
+                        }
                     </select>
-                </div>
-                <div className="form-group">
-                    {/* <input type="text" className="form-control" placeholder="Pick a Date" value={date} onChange={date => setDateChose(date)} required /> */}
-                    <DatePicker selected={date} onChange={date => setDate(date)} name="date" />
-                </div>
 
 
-                <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Phone Number " name='phone'
-                        value={todoOrder.phone} onChange={(e) => {
-                            setPhone(e.target.value)
-                        }} required />
-                        
+
+
                 </div>
 
 
-                <div className="form-group">
-                    <input type="text" className="form-control" id="name" placeholder="Name" name='Name'
-                        value={todoOrder.name} onChange={(e) => {
-                            setName(e.target.value)
-                        }} required />
+
+
+                <div className='form-group1'>
+
+                    <div class="form-group">
+                        <DatePicker minDate={new Date()} selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d yyyy , hh:mm:ss aa " />
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="phone" onChange={handleInput} value={orderInput.phone} placeholder="Phone Number " required />
+
+                    </div>
                 </div>
 
+                <div className='form-group2'>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" onChange={handleInput} value={orderInput.name} placeholder="Name" required />
 
-                <div className="form-group">
-                    <input type="text" className="form-control" id="email" placeholder="Email Address" name='email'
-                        value={todoOrder.email} onChange={(e) => {
-                            setEmail(e.target.value)
-                        }} required />
-                </div>
+                    </div>
 
 
-                <div className="form-comments">
-                    <input type="text" className="form-control" name='comments' placeholder="Comments" 
-                        value={todoOrder.comments} onChange={(e) => {
-                            setComments(e.target.value)
-                        }} required />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="email" onChange={handleInput} value={orderInput.email} className="form-control" placeholder="Email Address" required />
+
+                    </div>
 
                 </div>
-                <div className="form-submit">
-                    <input type="submit" name="submit" value="Book a table"className="table-book" onClick={handleSubmit}/>
+                <div class="form-comments">
+                    <input type="text" class="form-control" name="comments" onChange={handleInput} value={orderInput.comments} placeholder="Comments" required />
+
+
                 </div>
-           
+                <div class="form-submit">
+
+                    <input type="submit" name="submit" value="Book a table" class="table-book" />
+                </div>
+            </form>
         </div>
     )
 }

@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tables', function (Blueprint $table) {
-            $table->increments('id') ;
-            $table->string('Hour')->nullable() ;
-            $table->date('date')->nullable() ;
-            $table->integer('numPeople')->nullable();
-            $table->bigInteger('phone')->nullable() ;
-            $table->String('email')->nullable() ;
-            $table->String('Name')->nullable() ;
-            $table->String('comments')->nullable() ;
+            $table->increments('id') ->nullable();
+            $table->string('Hour') ->nullable();
+            $table->dateTime('date')->nullable($value = true);
+            $table->integer('numPeople') ->nullable();
+            $table->bigInteger('phone') ->nullable();
+            $table->String('email') ->nullable();
+            $table->String('name') ->nullable();
+            $table->String('comments') ->nullable();
             $table->timestamps();
         });
     }
