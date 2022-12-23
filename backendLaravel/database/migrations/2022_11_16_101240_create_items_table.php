@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ItemName');
-            $table->string('size');
-            $table->integer('newPrice');
-            $table->integer('oldPrice');
-            $table->integer('Qty');
-            $table->binary('ItemImg');
-            $table->string('Description');
+            $table->string('ItemName') ->nullable();;
+            $table->string('size') ->nullable();;
+            $table->string('crust') ->nullable();;
+            $table->integer('newPrice') ->nullable();;
+            $table->integer('oldPrice') ->nullable();;
+            $table->integer('Qty') ->nullable();;
+            $table->string('ItemImg') ->nullable();;
+            $table->string('Description') ->nullable();;
             $table->integer('menuID')->unsigned()->index()->nullable();
             $table->foreign('menuID')->references('id')->on('menu_types')->onDelete('cascade');
 

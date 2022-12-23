@@ -35,52 +35,28 @@ class TableController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-      
-        $validatedData =   $request->validate([
-            'date'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'Name'=>'required|min:2',
-            'comments'=>'required',
-            
-
-        ]);
-     
-         
+     */ 
+     public function store(Request $request){
+   
+   
   
-          $project = Table::create([
-            'date' => $validatedData['date'],
-            'phone' => $validatedData['phone'],
-            'email' => $validatedData['email'],
-            'name' => $validatedData['name'],
-           
-            'comments' => $validatedData['comments'],
-       
-          ]);
-          dd($response->json());
-          return response()->json('Table booked!');
-        }
-    
-public function login(Request $request){
-    $order=new Table();
-    $order->Hour=$request->Hour;
-    $order->numPeople=$request->numPeople;
-    $order->date=$request->date;
-    $order->phone=$request->phone;
-    $order->comments=$request->comments;
-    $order->email=$request->email;
-    $order->name=$request->name;
-    $order->save();
-    dd($order);
-    return $order;
-    // return response()->json([
-    //     'status'=>200,
-    //     'message'=>'booked table successfully',
     // ]);
+    
+    $order = Table::create([
+        'name' => $request->input('name'),
+        'phone' => $request->input('phone'),
+        'email' => $request->input('email'),
+        'comments' => $request->input('comments'),
+        'date' => $request->input('date'),
+        'Hour' => $request->input('Hour'),
+        'numPeople'=>$request->input('numPeople'),
+    ]);
+    // return response($order, 201);
+    return response()->json([
+        'status'=> 200,
+        'message'=>'iBooked Table  Successfully',
+    ]);
+
     // return response()->json([$request->all()]);
 }
     /**

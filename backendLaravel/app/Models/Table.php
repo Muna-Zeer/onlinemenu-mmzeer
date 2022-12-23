@@ -9,5 +9,5 @@ class Table extends Model
 {
     use HasFactory;
     protected $table='tables';
-    protected $fillable=['Hour','date','numPeople','phone','email','Name','comments'];
+    protected $fillable=['Hour','date','numPeople','phone','email','name','comments'];
 }
