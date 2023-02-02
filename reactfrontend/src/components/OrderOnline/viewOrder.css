@@ -1,0 +1,21 @@
+.btnNext ,.btnPrevious {
+    background-color: #fd9d3e;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 5px;
+    border: 0;
+    width: 100px;
+}
+
+.btnNext:hover ,.btnPrevious:hover{
+    color: #fd9d3e;
+    background-color: #fff;
+
+}
+
+.btnNext:active ,.btnPrevious:active{
+    color: black;
+    background-color: #f4881b;
+
+}
