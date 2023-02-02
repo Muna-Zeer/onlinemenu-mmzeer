@@ -10,14 +10,7 @@ class CustomerController extends Controller
 {
    
    
-//    public function getCustomer(){
-// $customer=new Customer;
-// $customer->firstName="Muna";
-// $customer->lastName="zeer";
-// $customer->phone="1234567";
-// $customer->save();
-// return "customer has existence address";
-//    }
+
 
    public function getCustomers(){
     $posts = DB::select('SELECT * FROM customers');
@@ -81,35 +74,6 @@ public function customers(){
     public function index()
     {
   
-  // $query = DB::statement(`SELECT addresses.city,addresses.customerID,
-        // addresses.firstName,addresses.lastName,
-        // customers.firstName,customers.lastName,customers.phone
-        // FROM addresses, customers 
-        // WHERE  customers.id = addresses.id  `) ->whereNull('addresses.customerID')->first();
-       
-    //    $result= DB::select(`SELECT addresses.city,addresses.customerID,
-    //    addresses.firstName,addresses.lastName,
-    //    customers.firstName,customers.lastName,customers.phone
-    //    FROM addresses, customers 
-    //    WHERE  customers.id = addresses.id  ` );
-
-
-
-    // $result=Customer::select('customers.*')
-    // ->leftJoin('addresses', 'customers.id', '=', 'addresses.customerID')
-    // ->whereNull('addresses.customerID')->first();
-
-
-
-        // if($query->num_rows() > 0 ) {
-        //     return true;
-        //     dd($query );
-        // }
-        // else {
-        //     return false;
-        // }
-        
-        // $query = DB::table('customers')->get();
  $result=response()->json(Customer::latest()->get());
  return $result;
 
