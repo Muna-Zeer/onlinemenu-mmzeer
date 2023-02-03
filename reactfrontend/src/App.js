@@ -10,17 +10,23 @@ import { useState, useEffect } from 'react';
 
 import axios from "axios";
 import Header from './components/Header/header.component';
-import AddOrder from './components/addOrder/addOrder.components';
+import AddOrder from './components/OrderOnline/add-order.components';
 import Footer from './components/footer/footer.components';
 import MenuList from './components/Menu/listMenu/listMenu';
 import MenuGrid from './components/Menu/gridMenu/gridMenu';
-import OrderOnline from './components/OrderOnline/orderOnline.component';
+import OrderOnline from './components/OrderOnline/orderonline.component';
+import ViewOrder from './components/OrderOnline/ViewOrder.components';
+import EditOrder from './components/OrderOnline/edit.components';
+import MenuFilter from './components/Menu/menuFilter/menuFilter';
+
 function App() {
 
   const [customers, setCustomers] = useState([])
   const [orders, setOrders] = useState([])
+  const [products, setProducts] = useState([])
+
   useEffect(() => {
-    async function getAllStudent() {
+    async function getAllCustomer() {
       try {
         const customers = await axios.get("http://127.0.0.1:8000/api/customers")
         console.log(customers.data)
@@ -29,54 +35,41 @@ function App() {
         console.log(error)
       }
     }
-    getAllStudent()
+    getAllCustomer()
   }, [])
+
   useEffect(() => {
-    async function getAllImages() {
-      try {
-        const orders = await axios.get("http://127.0.0.1:8000/api/selectImg")
-        console.log(orders.data)
-        setOrders(orders.data)
-      } catch (error) {
-        console.log(error)
-      }
+    async function getAllList() {
+        try {
+            const products = await axios.get("http://127.0.0.1:8000/api/allOrder")
+            console.log(products.data)
+            setProducts(products.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
-    getAllImages()
-  }, [])
+    getAllList()
+}, [])
   return (
     <div className="App">
 
 
-      {
+   
 
-        customers.length === 0 ? " " :
-          customers?.map((customers, i) => {
-            return (
-              <h2 key={i}>{customers.firstName} {customers.lastName}</h2>
-            )
-          })
-      }
-
-      {
-        orders.length === 0 ? " " :
-          orders?.map((orders, i) => {
-            return (
-              <h2 key={i}>{orders.ItemImg}</h2>
-
-            )
-          })
-      }
       <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/AddOrder" element={<AddOrder />} />
+          <Route path="/AddOrder/:id" element={<AddOrder />} />
           <Route path="/OrderOnline" element={<OrderOnline />} />
           <Route path="/Menu" element={<Menu />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Reservation" element={<Reservation />} />
           <Route path="/MenuList" element={<MenuList />} />
           <Route path="/MenuGrid" element={<MenuGrid />} />
+          <Route path="/ViewOrder" element={<ViewOrder/>} />
+          <Route path="/MenuFilter" element={<MenuFilter/>} />
+          <Route path="/ViewOrder/edit-order/:id" element={<EditOrder/>} />
         </Routes>
         <Footer />
       </BrowserRouter>
