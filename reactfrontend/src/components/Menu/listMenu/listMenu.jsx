@@ -48,7 +48,7 @@ const MenuList = (props) => {
                 return (
                   <div className="menuListBox">
                     <div className="listImg">
-                      <Link className='nav-link' to='/AddOrder'><img src={products.ItemImg} alt="pizza" /></Link>
+                      <Link className='nav-link' to={`/AddOrder/${products.id}`}><img src={products.ItemImg} alt="pizza" /></Link>
                     </div>
                     <div className="menuListDetail">
                       <div className="ListTitle">
