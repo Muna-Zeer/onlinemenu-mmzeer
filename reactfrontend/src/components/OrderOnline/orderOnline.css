@@ -9,9 +9,10 @@
 
 .OrderOnlineBox {
     width: 300px;
-    height: 350px;
+    height: 450px;
 
     margin: 10px;
+    margin-bottom: 5px;
     position: relative;
 }
 
@@ -42,23 +43,16 @@
     border-radius: 30px;
     background-color: black;
     color: #fff;
+    text-decoration: none;
 }
 
-.btn-orderNow {
+.btn-orderNow a{
     width: 160px;
     height: 45px;
     border-radius: 30px;
-    background-color: black;
     color: #fff;
 }
 
-.btn-orderNow:hover {
-    width: 160px;
-    height: 45px;
-    border-radius: 30px;
-    background-color: white;
-    color: #000;
-}
 
 .OrderOnlineImage {
     display: flex;
@@ -90,23 +84,33 @@
 .filter {
     display: flex;
     justify-content: space-between;
-    border: 3px solid rgb(59, 58, 59);
-    height: 70px;
-}
-
-.filter ul li {
-    display: flex;
-    justify-content: space-between;
+    flex-wrap: nowrap;
     border: 3px solid rgb(59, 58, 59);
     height: 60px;
-    display: inline-block;
+    padding-top:15px ;
+}
+.deleteProduct button{
+    margin: 5px;
+}
+.filter ul li {
+    display: flex;
+    justify-content:center;
+    flex-wrap: nowrap;
+    display: inline;
     transform: none;
-    padding: 30px;
-
-    margin-right: 10px;
-    border: 1px solid black;
+    padding: 15px;
+    
 
 
 
+}
+.filter ul li:hover {
+   color: #fd9d3e;
+    
 
+
+
+}
+#Curst,#Price,#Size{
+    border: 0px;
 }
