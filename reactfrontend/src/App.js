@@ -26,11 +26,7 @@ function App() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-<<<<<<< HEAD
-    async function getAllStudent() {
-=======
     async function getAllCustomer() {
->>>>>>> 86b16a43deb07ee0afc08b1bc3a537654dc44421
       try {
         const customers = await axios.get("http://127.0.0.1:8000/api/customers")
         console.log(customers.data)
@@ -41,10 +37,7 @@ function App() {
     }
     getAllCustomer()
   }, [])
-<<<<<<< HEAD
-=======
 
->>>>>>> 86b16a43deb07ee0afc08b1bc3a537654dc44421
   useEffect(() => {
     async function getAllList() {
         try {
