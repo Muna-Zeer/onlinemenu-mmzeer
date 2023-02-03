@@ -12,7 +12,7 @@ const Home = () => {
             <div class="OrderOnlineCard">
                 <div class="HomeBox container-fluid" >
                     <div class="home-img text-center"><Link className="nav-link" to="/AddOrder">
-                        <img src={pizza} width={300} height={300} alt="pizza" /></Link>
+                        <img src={pizza} width={250} height={250} alt="pizza" /></Link>
                         <Link id="title" className="nav-link" to='/AddOrder'>Barbecue Pizza </Link>
                     </div>
 

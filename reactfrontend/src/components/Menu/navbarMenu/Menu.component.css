@@ -37,7 +37,19 @@
   background-color: rgb(226, 221, 221);
 
 }
+.navMenu button{
+  border: 0px;
+  background-color: rgb(226, 221, 221);
 
+}
+.navMenu button:hover{
+  border: 0px;
+  background-color: #fd9d3e;
+  width: 100px;
+  border-radius: 50px;
+  height: 40px;
+  
+}
 .title {
   display: flex;
   flex-direction: row;

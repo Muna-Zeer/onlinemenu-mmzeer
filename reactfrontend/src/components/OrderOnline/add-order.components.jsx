@@ -1,44 +1,87 @@
 import './add-order.css'
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import NotFound from '../NotFound/notfound.component';
 import pizza from '../../assets/image/pizzaitem.jpeg'
-import { Handbag } from 'phosphor-react';
+import { Handbag, EnvelopeSimple, HeartStraight, CellSignalFull, FacebookLogo, TwitterLogo, LinkedinLogo, InstagramLogo } from 'phosphor-react';
+import 'react-datepicker/dist/react-datepicker.css';
 
-function AddOrder() {
+import { useParams } from 'react-router-dom';
+function AddOrder(products) {
+    const { name, price, image, Description } = products;
+    const [orders, setOrders] = useState({
+        ItemImg: '',
+        ItemName: '',
+        Description: '',
+        newPrice: '',
+        oldPrice: '',
+        name: '',
+        size: '',
+        crust: '',
+        Qty: '',
+        date: new Date(),
+    });
+    const [loading, setLoading] = useState(true);
+    let { id } = useParams();
+    let navigate = useNavigate();
 
-    const [orders, setOrders] = useState([])
 
-    const [img, setImg] = useState();
-    const imageUrl = "http://127.0.0.1:8000/api/addOrder";
-    const fetchImage = async () => {
-        const res = await fetch(imageUrl);
-        const imageBlob = await res.blob();
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        setImg(imageObjectURL);
+
+    const handleSubmit = (event) => {
+        // event.preventDefault();
+        const itemDetails = {
+            ItemName: orders.ItemName,
+            Description: orders.Description,
+            newPrice: orders.newPrice,
+            ItemImg: orders.ItemImg,
+            oldPrice: orders.oldPrice
+        };
+
+        axios.post('http://127.0.0.1:8000/api/create_order', itemDetails)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                console.log('handle', res.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
+
     useEffect(() => {
-        fetchImage();
-    }, []);
-    useEffect(() => {
-        async function getAllOrder() {
-            try {
-                const orders = await axios.get("http://127.0.0.1:8000/api/addOrder", {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    }
-                },)
-                console.log(orders.data)
-                setOrders(orders.data)
-            } catch (error) {
-                console.log(error)
-            }
+        const fetchProduct = async () => {
+            const response = await fetch(`http://127.0.0.1:8000/api/Items/${id}`);
+
+            const productData = await response.json();
+            setOrders(productData);
+            setLoading(false);
+
         }
-        getAllOrder()
-    }, [])
+        fetchProduct();
+    }, [id]);
+
+
+
+
+    // useEffect(() => {
+    async function getAllOrder() {
+        try {
+            const orders = await axios.get("http://127.0.0.1:8000/api/allOrder", {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            },)
+            console.log(orders.data)
+            setOrders(orders.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    //     getAllOrder()
+    // }, [])
 
 
 
@@ -47,27 +90,29 @@ function AddOrder() {
         size: '',
         crust: '',
         Qty: '',
-
-
         date: new Date(),
         error_list: [],
     });
 
     const handleInput = (e) => {
         e.persist();
-        setOrder({ ...orderInput, [e.target.name]: e.target.value })
+        setOrders({ ...orders, [e.target.name]: e.target.value })
     }
 
 
-    const saveStudent = (e) => {
+    const saveProduct = (e) => {
         e.preventDefault();
 
         const data = {
-            name: orderInput.name,
-
-            Qty: orderInput.Qty,
-            size: orderInput.size,
-            crust: orderInput.crust,
+            ItemName: orders.ItemName,
+            ItemImg: orders.ItemImg,
+            Description: orders.Description,
+            newPrice: orders.newPrice,
+            oldPrice: orders.oldPrice,
+            name: orders.name,
+            Qty: orders.Qty,
+            size: orders.size,
+            crust: orders.crust,
 
 
         }
@@ -76,48 +121,57 @@ function AddOrder() {
 
             if (res.data.status === 200) {
                 swal("Success!", res.data.message, "success");
+
                 setOrder({
+                    ItemImg: '',
+                    ItemName: '',
+                    Description: '',
+                    newPrice: '',
+                    oldPrice: '',
                     name: '',
                     size: '',
                     crust: '',
                     Qty: '',
-
-
                     error_list: [],
                 });
-                // history.push('/students');
+                console.log('save', res.data);
                 <NotFound />
             }
             else if (res.data.status === 422) {
-                setOrder({ ...orderInput, error_list: res.data.validate_err });
+                setOrder({ ...orders, error_list: res.data.validate_err });
             }
         });
+
     }
+
+
 
     return (
         <div>
             <div className="container ">
                 <div className="row justify-content-center mt-5 ">
-                    <div className="col-sm-4 "> <img src={pizza} alt="" height={400} /></div>
+                    <div className="col-sm-4 "> <img src={orders.ItemImg} alt={orders.ItemName} height={400} /></div>
                     <div className="col-sm-8 text-start ps-5  ">
 
 
-                        <h3 >PANEER MAKHANI PIZZA
-
+                        <h3 >
+                            {orders.ItemName}
                         </h3>
-                        <span className='pe-5 text-muted '><del>$ 30.50 </del></span><span className='text-warning'>$ 20.50</span>
-                        <p className=' text-muted '>Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-                            suscipit delectus. Corrupti, suscipit! Nobis deleniti placeat suscipit provident, dolore aut esse
-                            libero totam, consequuntur ratione enim ducimus. Nemo, asperiores porro!</p>
+                        <span className='pe-5 text-muted '></span><span className='text-warning'>${orders.newPrice}</span>
+                        <p className=' text-muted '>{orders.Description}</p>
 
-
-                        <form onSubmit={saveStudent}>
+                        {/* <button onClick={handleSubmit}>Submit</button> */}
+                        <form onSubmit={(event) => {
+                            event.preventDefault();
+                            saveProduct(event);
+                            // if (success) handleSubmit(event);
+                        }}>
                             <h5 >CHOOSE YOUR CRUST</h5>
                             <ul className='text-muted'>
                                 <li>
                                     <label>
                                         <input type="radio" value="Classic Hand Tossed" name='crust'
-                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput}  />
+                                            checked={orderInput.crust === "Classic Hand Tossed"} onChange={handleInput} />
                                         <span>Classic Hand Tossed</span>
                                     </label>
                                 </li>
@@ -167,12 +221,21 @@ function AddOrder() {
 
                             <div className="form-group mb-3">
                                 <label>Qty</label>
-                                <input type="text" placeholder='1' name="Qty" onChange={handleInput} value={orderInput.Qty} className="Qty" />
+                                <input
+                                    type="number"
+                                    min="1"
+                                    max="10"
+                                    name='Qty'
+                                    value={orders.Qty}
+                                    onChange={handleInput}
+                                />
                                 <button type="submit" className="btn ">
-                                {/* <Link className="nav-link" to="/ViewOrder">  */}
-                                <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART 
-                                {/* </Link> */}
+                                    <Link className="nav-link" to="/ViewOrder" />
+                                    <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />ADD TO CART
+                                    {/* </Link> */}
                                 </button>
+
+                                <button className="btn" onClick={() => { navigate("/ViewOrder") }}>view order </button>
                                 {/* <button type="submit" className="btn ">
                                 <Link className="nav-link" to="/ViewOrder"> 
                                 <Handbag className='Handbag' size={32} color={'#000'} hover={'#000'} />View CART 
@@ -181,28 +244,42 @@ function AddOrder() {
                             </div>
                         </form>
 
+                        <div className='share'>
+                            <ul >
+                                <li>
 
+                                    <a href="#">
+
+                                        <span> <HeartStraight size={32} color="#080808" />Wishlist</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="#">
+
+                                        <span><CellSignalFull size={32} color="#080808" />Compare</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="#">
+
+                                        <span><EnvelopeSimple size={32} color="#080808" />Email to Friends</span>
+                                    </a>
+                                </li>
+
+                                <li class="share-title ms-5" >Share This :</li>
+                                <li><a href="https://www.facebook.com/"><i class="facebook" > <FacebookLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://twitter.com/"><i class="twitter" > <TwitterLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://il.linkedin.com/"><i class="linkedin" ><LinkedinLogo size={32} color="#080808" /></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="instagram" > <InstagramLogo size={32} color="#080808" /></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* {
 
-  orders.length ===0 ? " " :
-  orders?.map((orders, i)=>{
-  return (
-  <h2 key={i}>{orders.newPrice} {orders.oldPrice} {orders.Description}
-    <img src={orders.ItemImg} alt="no photo"></img>
-    <img src={orders.ItemImg} alt="icons" />
-
-  </h2>
-
-  )
-  {
-  console.log('image',orders.ItemImg);
-  }
-  })
-  } */}
         </div>
 
     );

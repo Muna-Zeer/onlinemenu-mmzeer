@@ -48,3 +48,32 @@
 .listPrice {
     color: #fd9d3e;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #fd9d3e;
+    color:#000;
+  }
+  
+  .pagination button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover {
+    background-color: #ccc;
+    color: #fd9d3e;
+    border: 1px solid #000;
+  }

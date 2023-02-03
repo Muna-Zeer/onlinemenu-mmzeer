@@ -1,36 +1,41 @@
+import './viewOrder.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { Trash, Pencil } from 'phosphor-react';
 
-const ViewOrder = () => {
+const ViewOrder = (props) => {
 
     const [products, setProducts] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemPerPage, setItemPerPage] = useState(5);
 
-    // const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-        async function getAllProduct() {
-            try {
-                const products = await axios.get("http://127.0.0.1:8000/api/allOrder")
-                console.log(products.data)
-                setProducts(products.data)
-            } catch (error) {
-                console.log(error)
-            }
+        fetch(`http://127.0.0.1:8000/api/allOrder?page=${props.pcurrentPage}`)
+            .then(response => response.json())
+            .then(data => setProducts(data.data));
+        setLoading(false);
+    }, [currentPage]);
+
+
+
+    const getAllProduct = async () => {
+        try {
+            const products = await axios.get("http://127.0.0.1:8000/api/allOrder")
+            console.log('products.data.data', products.data.data)
+            setProducts(products.data.data)
+            setLoading(false);
+        } catch (error) {
+            console.log(error)
         }
+    }
+    useEffect(() => {
         getAllProduct()
     }, [])
 
-    useEffect(() => {
-        fetchProducts()
-    }, [])
-
-    const fetchProducts = async () => {
-        await axios.get(`http://127.0.0.1:8000/api/order`).then(({ data }) => {
-            setProducts(data)
-        })
-    }
 
     const deleteProduct = async (id) => {
         const isConfirm = await Swal.fire({
@@ -54,7 +59,7 @@ const ViewOrder = () => {
                 icon: "success",
                 text: data.message
             })
-            fetchProducts()
+            getAllProduct();
         }).catch(({ response: { data } }) => {
             Swal.fire({
                 text: data.message,
@@ -62,7 +67,9 @@ const ViewOrder = () => {
             })
         })
     }
-
+    if (loading) {
+        return <div>loading</div>
+    }
     return (
         <div className="container">
             <div className="row">
@@ -84,36 +91,31 @@ const ViewOrder = () => {
                                         <th>Product</th>
                                         <th>Product Name</th>
                                         <th>price</th>
-                                        <th>Quentity</th>
-                                        <th>SubTotal</th>
+                                        <th>Quantity</th>
                                         <th>Actions</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        products.length > 0 && (
+                                        products && products.length > 0 && (
                                             products.map((products) => (
                                                 <tr key={products.id}>
                                                     <td>{products.id}</td>
                                                     <td>
                                                         <img width="50px" src={products.ItemImg} />
                                                     </td>
+                                                    <td>{products.ItemName}</td>
                                                     <td>{products.newPrice}</td>
-                                                    <td></td>
-                                                    <td>{products.Qty}</td>
-                                                    <td>{products.oldPrice}</td>
-                                                    <td>     <Button variant="danger"
-                                                    // onClick={() => deleteProduct(products.id)}
-                                                    >
-                                                        {/* <Link className="nav-link" to="/OrderOnline">
-                                                        Edit
-                                                        </Link> */}
-                                                        <Link to={`edit-order/${products.id}`} className="btn btn-success btn-sm">Edit</Link>
 
-                                                    </Button>
-                                                        <Button variant="danger" onClick={() => deleteProduct(products.id)}>
-                                                            Delete
+                                                    <td>{products.Qty}</td>
+
+                                                    <td>
+                                                        <Button className='buttonEdit'  >
+                                                            <Link to={`edit-order/${products.id}`} className=" btn-sm" style={{ color: #fff }} ><Pencil size={32} /></Link>
+                                                        </Button>
+                                                        <Button className='buttonEdit' onClick={() => deleteProduct(products.id)}>
+                                                            <Trash size={32} />
                                                         </Button>
                                                     </td>
 
@@ -123,6 +125,9 @@ const ViewOrder = () => {
                                             ))
                                         )
                                     }
+                                    <button className='btnPrevious   ' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
+                                    <span className='spanCurrentPage'>{currentPage}</span>
+                                    <button className='btnNext ' disabled={products.length < itemPerPage} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
                                 </tbody>
                             </table>
                         </div>

@@ -62,7 +62,10 @@ input[type="radio"] {
     font-size: 20px;
     border-radius: 0px;
 }
-
+.cardViewOrder{
+    width: 600px;
+    
+} 
 .btn:hover {
     color: #fd9d3e;
     background-color: #fff;
