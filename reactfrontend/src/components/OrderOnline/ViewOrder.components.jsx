@@ -112,7 +112,7 @@ const ViewOrder = (props) => {
 
                                                     <td>
                                                         <Button className='buttonEdit'  >
-                                                            <Link to={`edit-order/${products.id}`} className=" btn-sm" style={{ color: #fff }} ><Pencil size={32} /></Link>
+                                                            <Link to={`edit-order/${products.id}`} className=" btn-sm" style={{ color: "#fff" }} ><Pencil size={32} /></Link>
                                                         </Button>
                                                         <Button className='buttonEdit' onClick={() => deleteProduct(products.id)}>
                                                             <Trash size={32} />
